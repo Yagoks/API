@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Informações do Livro</title>
+</head>
+<body>
+    <h1>Buscar Livro</h1>
+    <form id="form-busca">
+        <label for="id">ID do Livro:</label>
+        <input type="number" id="id" name="id" required>
+        <input type="submit" value="Buscar">
+    </form>
+    <div id="resultado"></div>
+
+    <script>
+        document.getElementById('form-busca').onsubmit = function(e) {
+            e.preventDefault();
+            var id = document.getElementById('id').value;
+            fetch('http://localhost:5000/livros/' + id)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na resposta do servidor');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    var resultado = document.getElementById('resultado');
+                    if (data.id) {
+                        resultado.innerHTML = '<h2>Resultado:</h2>' +
+                                              '<p>ID: ' + data.id + '</p>' +
+                                              '<p>Título: ' + data.título + '</p>' +
+                                              '<p>Autor: ' + data.autor + '</p>';
+                    } else {
+                        resultado.innerHTML = '<p>Livro não encontrado.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar informações do livro:', error);
+                    document.getElementById('resultado').innerHTML = '<p>Erro ao buscar informações do livro.</p>';
+                });
+        };
+    </script>
+</body>
+</html>
