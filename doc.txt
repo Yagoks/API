@@ -1,0 +1,13 @@
+O programa consiste em uma aplicação que verifica livros em uma aplicação
+
+1 - Rodando o servidor em Flask no Aplicativo <app.py> 
+
+2 - Abra a pagina <aplicação_web.html>
+
+3 - Na aplicação o Web o usuario deve inserir no campo de texto numero de 1 a 3 
+
+4 - O usuario deve receber a resposta do id relacionado ao livro id do livro inserido 
+
+5 - Ele deve ver na tela o ID inserido, o Titulo do Livro e o Autor
+
+Se o usuario inserir um numero nao valido deve receber uma menssagem de erro dizendo que não encontrou
